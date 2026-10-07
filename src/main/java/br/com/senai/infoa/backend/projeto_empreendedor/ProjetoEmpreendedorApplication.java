@@ -1,4 +1,4 @@
-package br.com.senai.infoa.backend.projeto_empreendedor.services;
+package br.com.senai.infoa.backend.projeto_empreendedor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

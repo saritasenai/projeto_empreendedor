@@ -1,10 +1,15 @@
 package br.com.senai.infoa.backend.projeto_empreendedor.models;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity 
@@ -25,10 +30,17 @@ public class Produto {
     @Column (name="preco")
     private Double preco;
 
+    @ManyToMany 
+    @JoinTable (
+        name = "empreendedor_produto", 
+        joinColumns = @JoinColumn(name = "id_produto"),
+        inverseJoinColumns = @JoinColumn(name = "id_empreendedor") 
+    )
+    private List<Empreendedor> empreendedores;
     public Produto() {
     }
 
-    public Produto(String dataFabricacao, Integer id, String name, Double preco) {
+    public Produto(String dataFabricacao, Integer id, String name, Double preco, List<Empreendedor> empreendedores) {
         this.dataFabricacao = dataFabricacao;
         this.id = id;
         this.name = name;
@@ -66,6 +78,11 @@ public class Produto {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
-
+    public List<Empreendedor> getEmpreendedores() {
+        return empreendedores;
+    }
+    public void setEmpreendedores(List<Empreendedor> empreendedores) {
+        this.empreendedores = empreendedores;
+    }
 
 }
